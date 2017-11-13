@@ -36,7 +36,7 @@ if (process.env.NODE_ENV === 'production') {
 }
 
 module.exports = {
-  entry: ['babel-polyfill', './src/client.js'],
+  entry: ['babel-polyfill', './src/client.jsx'],
   resolve: {
     modules: ['node_modules', path.join(__dirname, 'src')],
     extensions: ['.js', '.jsx', '.json']
