@@ -1,6 +1,6 @@
 import React from 'react';
 
-import './App.css';
+require('./App.css');
 
 // const propTypes = {
 //     initialName: PropTypes.string
@@ -30,7 +30,7 @@ class App extends React.Component {
     this.setState({ touched: true });
 
     if (name.length === 0) {
-      this.setState({ name: this.props.initialName });
+      this.setState({ name: 'Test' });
     } else {
       this.setState({ name });
     }
