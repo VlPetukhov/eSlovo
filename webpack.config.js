@@ -31,8 +31,8 @@ if (process.env.NODE_ENV === 'production') {
       dry: false
     })
   );
-  plugins.push(new webpack.optimize.DedupePlugin());
-  plugins.push(new webpack.optimize.OccurenceOrderPlugin());
+  plugins.push(new webpack.optimize.OccurrenceOrderPlugin());
+  plugins.push(new webpack.optimize.UglifyJsPlugin({ mangle: false, sourcemap: false }));
 }
 
 module.exports = {
@@ -113,7 +113,10 @@ module.exports = {
       }
     ]
   },
-  devtool: process.env.NODE_ENV !== 'production' ? 'source-map' : null,
+  devtool: process.env.NODE_ENV !== 'production' ? 'source-map' : false,
+  performance: {
+    hints: false
+  },
   devServer: {
     headers: { 'Access-Control-Allow-Origin': '*' }
   }
