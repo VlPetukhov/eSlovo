@@ -6,7 +6,8 @@ const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
 
 const localConfig = require('./config.json');
-const publicPath = localConfig.serverUrl + 'assets';
+const publicPath = localConfig.staticContentUrl;
+
 const cssName = process.env.NODE_ENV === 'production' ?
   'styles-[hash].css' :
   'styles.css';
@@ -44,7 +45,7 @@ module.exports = {
   },
   plugins,
   output: {
-    path: `${__dirname}/public/assets/`,
+    path: `${__dirname}${localConfig.staticUrl}/assets/`,
     filename: jsName,
     publicPath
   },
