@@ -5,15 +5,18 @@ import App      from './components/App';
 
 const app = express();
 
+app.use((req, res, next) => {
+  console.log('Request: ', req.url);
+  next();
+});
+
 app.use((req, res) => {
   const componentHTML = ReactDom.renderToString(< App />);
 
   return res.end(renderHTML(componentHTML));
 });
 
-const assetUrl = process.env.NODE_ENV !== 'production' ?
-  'http://localhost:8050' :
-  '/';
+const assetUrl = '/';
 
 function renderHTML(componentHTML) {
   return `
@@ -23,11 +26,11 @@ function renderHTML(componentHTML) {
           <meta charset="utf-8">
           <meta name="viewport" content="width=device-width, initial-scale=1.0">
           <title>Hello React</title>
-          <link rel="stylesheet" href="${assetUrl}/public/assets/styles.css">
+          <link rel="stylesheet" href="${assetUrl}assets/styles.css">
       </head>
       <body>
         <div id="react-view">${componentHTML}</div>
-        <script type="application/javascript" src="${assetUrl}/public/assets/bundle.js"></script>
+        <script type="application/javascript" src="${assetUrl}assets/bundle.js"></script>
       </body>
     </html>
   `;

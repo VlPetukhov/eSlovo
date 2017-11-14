@@ -5,7 +5,8 @@ const path = require('path');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
 
-const publicPath = 'http://localhost:8050/public/assets';
+const localConfig = require('./config.json');
+const publicPath = localConfig.serverUrl + 'assets';
 const cssName = process.env.NODE_ENV === 'production' ?
   'styles-[hash].css' :
   'styles.css';
